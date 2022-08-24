@@ -15,8 +15,7 @@ func failOnError(err error, msg string) {
 
 func main() {
 	fmt.Println("Go RabbitMQ Tutorial")
-	//conn, err := amqp.Dial("amqp://admin:WorkerRabbit@100@10.52.57.100:5672/")
-	conn, err := amqp.Dial("amqp://guest:guest@10.60.160.76:5672/")
+	conn, err := amqp.Dial("amqp://guest:guest@127.0.0.1:5672/")
 	if err != nil {
 		fmt.Println("Failed Initializing Broker Connection")
 		panic(err)
@@ -27,7 +26,7 @@ func main() {
 	defer ch.Close()
 
 	err = ch.ExchangeDeclare(
-		"epg_schedule", // name
+		"schedule",     // name
 		"fanout",       // type
 		true,           // durable
 		false,          // auto-deleted
